@@ -62,11 +62,8 @@ public class Board : MonoBehaviour
 
 
                 tiles[i, j] = tile;
-                
-                tile.sprite = sprites[Random.Range(0, 5)];
-                                
-                tile.x = i;
-                tile.y = j;
+                tile.Init(sprites[Random.Range(0, 5)], i, j);
+               
                
                 yield return new WaitForSeconds(0.01f);
                 stepCount = 3;

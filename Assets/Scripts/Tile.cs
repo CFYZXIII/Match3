@@ -6,7 +6,8 @@ public class Tile : MonoBehaviour
 {
     public int x;//горизонтальная координата фишки
     public int y;//вертикальная координата фишки
-    public Sprite sprite;//спрайт фишки
+    SpriteRenderer sr;//спрайт рендерер фишки
+    public Sprite sprite; //спрайт фишки
 
     /// <summary>
     /// событие вызываемое при нажатии на фишку
@@ -29,11 +30,19 @@ public class Tile : MonoBehaviour
         dropEvent?.Invoke(this, new Event());
     }
 
-    private void Start()
+    private void Awake()
     {
-        GetComponent<SpriteRenderer>().sprite = sprite;
-        transform.localPosition = new Vector2(x, y);
+        sr = GetComponent<SpriteRenderer>();
+        
     }
 
+    public void Init(Sprite sprite, int i, int j)
+    {
+        this.x = i;
+        this.y = j;
+        this.sprite = sprite;
+        sr.sprite = sprite;
+        transform.localPosition = new Vector2(x, y);
+    }
 
 }
